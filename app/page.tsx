@@ -15,6 +15,7 @@ const client = generateClient<Schema>();
 
 export default function App() {
   const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
+  // const [appointments, setAppointments] = useState<Array<Schema["Appointment"]["type"]>>([]);
   const { user, signOut } = useAuthenticator();
 
   function listTodos() {
@@ -23,6 +24,12 @@ export default function App() {
     });
   }
 
+  // function listPayments() {
+  //   client.models.Appointment.observeQuery().subscribe({
+  //     next: (data) => setAppointments([...data.items]),
+  //   });
+  // }
+
 
   function deleteTodo(id: string) {
     client.models.Todo.delete({id})
@@ -30,6 +37,7 @@ export default function App() {
 
   useEffect(() => {
     listTodos();
+    // listPayments();
   }, []);
 
   function createTodo() {

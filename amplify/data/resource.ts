@@ -12,6 +12,97 @@ const schema = a.schema({
       content: a.string(),
     })
     .authorization((allow) => [allow.owner()]),
+  Patient: a
+    .model({
+      firstName: a.string().required(),
+      lastName: a.string().required(),
+      dob: a.datetime(),
+      email: a.email().required(),
+      phone1: a.string().required(),
+      phone2: a.string(),
+      address: a.string(),
+      createdBy: a.string(),
+      // treatments: a.hasMany('PatientTreatment', 'patientId'),
+      // documents: a.hasMany('Document', 'patientId'),
+    })
+    .authorization((allow) => [allow.owner()]),
+  Treatment: a
+    .model({
+      title: a.string().required(),
+      description: a.string().required(),
+      price: a.float().required(),
+      numberOfSessions: a.id().required(),
+      createdBy: a.string().required(),
+      additionalInfo: a.json(),
+      // treatments: a.hasMany('PatientTreatment', 'treatmentId'),
+    })
+    .authorization((allow) => [allow.owner()]),
+  // PatientTreatment: a
+  //   .model({
+  //     price: a.float().required(),
+  //     numberOfSessions: a.id().required(),
+  //     patientId: a.id().required(),
+  //     treatmentId: a.id().required(),
+  //     status: a.string().required(),
+  //     createdBy: a.string().required(),
+  //     updatedBy: a.string(),
+  //     additionalInfo: a.json(),
+  //     // documents: a.hasMany('Document', 'patientTreatmentId'),
+  //     appointments: a.hasMany('Appointment', 'patientTreatmentId'),
+  //     // payments: a.hasMany('Payment', 'patientTreatmentId'),
+  //     patient: a.belongsTo('Patient', 'patientId'),
+  //     treatment: a.belongsTo('Treatment', 'treatmentId'),
+  //   })
+  //   .authorization((allow) => [allow.owner()]),
+  // Appointment: a
+  //   .model({
+  //     price: a.float().required(),
+  //     number: a.id().required(),
+  //     scheduledDate: a.datetime(),
+  //     dateOfAttendance: a.datetime(),
+  //     status: a.string().required(),
+  //     createdBy: a.string().required(),
+  //     updatedBy: a.string(),
+  //     additionalInfo: a.json(),
+  //     // documents: a.hasMany('Document', 'appointmentId'),
+  //     patientTreatmentId: a.id().required(),
+  //     patientTreatment: a.belongsTo('PatientTreatment', 'patientTreatmentId'),
+  //   })
+  //   .authorization((allow) => [allow.owner()]),
+  // Payment: a
+  //   .model({
+  //     amount: a.float().required(),
+  //     paymentMethod: a.string().required(),
+  //     status: a.string(),
+  //     verifiedBy: a.string(),
+  //     createdBy: a.string().required(),
+  //     updatedBy: a.string(),
+  //     additionalInfo: a.json(),
+  //     documents: a.hasMany('Document', 'paymentId'),
+  //     patientTreatmentId: a.id().required(),
+  //     patientTreatment: a.belongsTo('PatientTreatment', 'patientTreatmentId'),
+  //   })
+  //   .authorization((allow) => [allow.owner()]),
+  // Document: a
+  //   .model({
+  //     price: a.float().required(),
+  //     number: a.id().required(),
+  //     scheduledDate: a.datetime(),
+  //     dateOfAttendance: a.datetime(),
+  //     status: a.string().required(),
+  //     createdBy: a.string().required(),
+  //     updatedBy: a.string(),
+  //     additionalInfo: a.json(),
+  //     paymentId: a.id(),
+  //     payment: a.belongsTo('Payment', 'paymentId'),
+  //     appointmentId: a.id(),
+  //     appointment: a.belongsTo('Appointment', 'appointmentId'),
+  //     patientTreatmentId: a.id(),
+  //     patientTreatment: a.belongsTo('PatientTreatment', 'patientTreatmentId'),
+  //     patientId: a.id(),
+  //     patient: a.belongsTo('Patient', 'patientId'),
+  //   })
+  //   .authorization((allow) => [allow.owner()]),
 });
 
 export type Schema = ClientSchema<typeof schema>;
