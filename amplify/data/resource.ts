@@ -22,7 +22,7 @@ const schema = a.schema({
       phone2: a.string(),
       address: a.string(),
       createdBy: a.string(),
-      // treatments: a.hasMany('PatientTreatment', 'patientId'),
+      treatments: a.hasMany('PatientTreatment', 'patientId'),
       // documents: a.hasMany('Document', 'patientId'),
     })
     .authorization((allow) => [allow.owner()]),
@@ -34,26 +34,26 @@ const schema = a.schema({
       numberOfSessions: a.id().required(),
       createdBy: a.string().required(),
       additionalInfo: a.json(),
-      // treatments: a.hasMany('PatientTreatment', 'treatmentId'),
+      treatments: a.hasMany('PatientTreatment', 'treatmentId'),
     })
     .authorization((allow) => [allow.owner()]),
-  // PatientTreatment: a
-  //   .model({
-  //     price: a.float().required(),
-  //     numberOfSessions: a.id().required(),
-  //     patientId: a.id().required(),
-  //     treatmentId: a.id().required(),
-  //     status: a.string().required(),
-  //     createdBy: a.string().required(),
-  //     updatedBy: a.string(),
-  //     additionalInfo: a.json(),
-  //     // documents: a.hasMany('Document', 'patientTreatmentId'),
-  //     appointments: a.hasMany('Appointment', 'patientTreatmentId'),
-  //     // payments: a.hasMany('Payment', 'patientTreatmentId'),
-  //     patient: a.belongsTo('Patient', 'patientId'),
-  //     treatment: a.belongsTo('Treatment', 'treatmentId'),
-  //   })
-  //   .authorization((allow) => [allow.owner()]),
+  PatientTreatment: a
+    .model({
+      price: a.float().required(),
+      numberOfSessions: a.id().required(),
+      patientId: a.id().required(),
+      treatmentId: a.id().required(),
+      status: a.string().required(),
+      createdBy: a.string().required(),
+      updatedBy: a.string(),
+      additionalInfo: a.json(),
+      // documents: a.hasMany('Document', 'patientTreatmentId'),
+      appointments: a.hasMany('Appointment', 'patientTreatmentId'),
+      // payments: a.hasMany('Payment', 'patientTreatmentId'),
+      patient: a.belongsTo('Patient', 'patientId'),
+      treatment: a.belongsTo('Treatment', 'treatmentId'),
+    })
+    .authorization((allow) => [allow.owner()]),
   // Appointment: a
   //   .model({
   //     price: a.float().required(),
