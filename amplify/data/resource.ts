@@ -48,7 +48,7 @@ const schema = a.schema({
       updatedBy: a.string(),
       additionalInfo: a.json(),
       // documents: a.hasMany('Document', 'patientTreatmentId'),
-      appointments: a.hasMany('Appointment', 'patientTreatmentId'),
+      // appointments: a.hasMany('Appointment', 'patientTreatmentId'),
       // payments: a.hasMany('Payment', 'patientTreatmentId'),
       patient: a.belongsTo('Patient', 'patientId'),
       treatment: a.belongsTo('Treatment', 'treatmentId'),
